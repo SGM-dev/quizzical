@@ -1,0 +1,22 @@
+.top-right,
+.bottom-left {
+  position: absolute;
+  z-index: -1;
+}
+
+.top-right {
+  top: 0;
+  right: 0;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 0;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
