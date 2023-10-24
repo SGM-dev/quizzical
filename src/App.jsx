@@ -21,7 +21,7 @@ function App() {
     questions.forEach((item, index) =>
       setCorrectAnswers((prevCorrectAnswers) => ({
         ...prevCorrectAnswers,
-        [`choice${index}`]: item.correct_answer,
+        [`choices${index}`]: item.correct_answer,
       }))
     );
   }, [questions]);
