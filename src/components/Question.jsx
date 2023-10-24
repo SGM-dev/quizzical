@@ -8,8 +8,6 @@ export default function Question(props) {
     shuffle([...props.item.incorrect_answers, props.item.correct_answer])
   );
 
-  const [formData, setFormData] = useState({ [props.name]: "" });
-
   const answerElements = choices.map((choice) => {
     return (
       <div key={choice} className="not-answered">
@@ -19,6 +17,7 @@ export default function Question(props) {
           id={`${choice}${props.id}`}
           name={props.name}
           hidden
+          onChange={props.handleChange}
         ></input>
         <label htmlFor={`${choice}${props.id}`}>{decode(choice)}</label>
       </div>
