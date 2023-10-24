@@ -6,6 +6,7 @@ export default function Quiz(props) {
   const [formData, setFormData] = useState({});
   const [correctAnswers, setCorrectAnswers] = useState({});
 
+
   useEffect(() => {
     props.questions.forEach((item, index) =>
       setCorrectAnswers((prevCorrectAnswers) => ({
@@ -13,7 +14,6 @@ export default function Quiz(props) {
         [`choice${index}`]: item.correct_answer,
       }))
     );
-    console.log(correctAnswers)
   }, [props.questions]);
 
   function handleChange(e) {
@@ -30,14 +30,10 @@ export default function Quiz(props) {
         key={index}
         name={`choices${index}`}
         handleChange={handleChange}
+        correctAnswer={correctAnswers[`choice${index}`]}
       />
     );
   });
 
-  return (
-    <form className="quiz-container">
-      {questionElements}
-      <button className="check-answers"></button>
-    </form>
-  );
+  return <div className="quiz-container">{questionElements}</div>;
 }
