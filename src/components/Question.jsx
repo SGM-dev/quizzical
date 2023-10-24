@@ -4,7 +4,8 @@ import { shuffle } from "./utils";
 import "./Question.css";
 
 export default function Question(props) {
-  const { item, id, name, handleChange, correctAnswer, isDone } = props;
+  const { item, id, name, handleChange, correctAnswer, isDone, isCorrect } =
+    props;
 
   const [choices, setChoices] = useState(
     shuffle([...item.incorrect_answers, item.correct_answer])
@@ -20,6 +21,7 @@ export default function Question(props) {
           name={name}
           hidden
           onChange={handleChange}
+          disabled={isDone}
         ></input>
         <label htmlFor={`${choice}${id}`}>{decode(choice)}</label>
       </div>
