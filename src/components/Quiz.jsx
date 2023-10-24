@@ -21,12 +21,14 @@ export default function Quiz(props) {
   }
 
   useEffect(() => {
-    Object.keys(formData).forEach((key) =>
-      setIsCorrect((prevIsCorrect) => ({
-        ...prevIsCorrect,
-        [key]: formData[key] == correctAnswers[key],
-      }))
-    );
+    if (isDone) {
+      Object.keys(formData).forEach((key) =>
+        setIsCorrect((prevIsCorrect) => ({
+          ...prevIsCorrect,
+          [key]: formData[key] == correctAnswers[key],
+        }))
+      );
+    }
   }, [isDone]);
 
   const questionElements = questions.map((item, index) => {
