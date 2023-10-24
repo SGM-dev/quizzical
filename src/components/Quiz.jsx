@@ -12,6 +12,8 @@ export default function Quiz(props) {
     setCorrectAnswers,
     isCorrect,
     setIsCorrect,
+    setScore,
+    score,
   } = props;
 
   function handleChange(e) {
@@ -30,6 +32,16 @@ export default function Quiz(props) {
       );
     }
   }, [isDone]);
+
+  useEffect(() => {
+    if (isDone) {
+      const newScore = Object.keys(isCorrect).reduce(
+        (total, key) => (isCorrect[key] ? total + 1 : total),
+        0
+      );
+      setScore(newScore);
+    }
+  }, [isDone, isCorrect]);
 
   const questionElements = questions.map((item, index) => {
     return (

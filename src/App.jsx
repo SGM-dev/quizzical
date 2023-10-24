@@ -53,6 +53,8 @@ function App() {
           setCorrectAnswers={setCorrectAnswers}
           isCorrect={isCorrect}
           setIsCorrect={setIsCorrect}
+          setScore={setScore}
+          score={score}
         />
       )}
       {quiz &&
@@ -60,7 +62,7 @@ function App() {
           checkBtn
         ) : (
           <div className="score-container">
-            <p className="score">You scored 3/5 correct answers</p>
+            <p className="score">You scored {score}/5 correct answers</p>
             {playBtn}
           </div>
         ))}
