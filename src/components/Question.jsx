@@ -7,9 +7,11 @@ export default function Question(props) {
   const { item, id, name, handleChange, correctAnswer, isDone, isCorrect } =
     props;
 
-  const [choices, setChoices] = useState(
-    shuffle([...item.incorrect_answers, item.correct_answer])
-  );
+  const [choices, setChoices] = useState([]);
+
+  useEffect(() => {
+    setChoices(shuffle([...item.incorrect_answers, item.correct_answer]));
+  }, [item]);
 
   const answerElements = choices.map((choice) => {
     const isCorrectAnswer = item.correct_answer === choice;
