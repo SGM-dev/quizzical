@@ -37,12 +37,14 @@ input:disabled ~ label {
   opacity: 0.5;
 }
 
-.correct-answer,
+input:disabled ~ .correct-answer,
 input:checked ~ .correct-answer {
   background: #94d7a2;
-  opacity: 0.7;
+  opacity: 1;
+  border: none;
 }
 
 input:checked ~ .incorrect-answer {
   background: #f8bcbc;
+  border: none;
 }
