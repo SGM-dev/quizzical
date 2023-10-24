@@ -6,6 +6,7 @@ import Quiz from "./components/Quiz";
 function App() {
   const [quiz, setQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5")
@@ -13,9 +14,25 @@ function App() {
       .then((data) => setQuestions(data.results));
   }, []);
 
+  const checkBtn = (
+    <button className="check-answers btn" onClick={() => setIsDone(true)}>
+      Check Answers
+    </button>
+  );
+  const playBtn = <button className="play-again btn">Play Again</button>;
+
   return (
     <main>
       {!quiz ? <Start setQuiz={setQuiz} /> : <Quiz questions={questions} />}
+      {quiz &&
+        (!isDone ? (
+          checkBtn
+        ) : (
+          <div className="score-container">
+            <p className="score">You scored 3/5 correct answers</p>
+            {playBtn}
+          </div>
+        ))}
 
       {/* SVG Container */}
       <div className="svg-container">
