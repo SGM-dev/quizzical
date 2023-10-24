@@ -7,12 +7,17 @@ function App() {
   const [quiz, setQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isDone, setIsDone] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
+    getQuestions();
+  }, []);
+
+  function getQuestions() {
     fetch("https://opentdb.com/api.php?amount=5")
       .then((res) => res.json())
       .then((data) => setQuestions(data.results));
-  }, []);
+  }
 
   const checkBtn = (
     <button className="check-answers btn" onClick={() => setIsDone(true)}>
@@ -23,7 +28,11 @@ function App() {
 
   return (
     <main>
-      {!quiz ? <Start setQuiz={setQuiz} /> : <Quiz questions={questions} />}
+      {!quiz ? (
+        <Start setQuiz={setQuiz} isDone={isDone} />
+      ) : (
+        <Quiz questions={questions} />
+      )}
       {quiz &&
         (!isDone ? (
           checkBtn
