@@ -7,10 +7,8 @@ export default function Question(props) {
   const { item, id, name, handleChange, correctAnswer, isDone, isCorrect } =
     props;
 
-  const [choices, setChoices] = useState(
-    shuffle([...item.incorrect_answers, item.correct_answer])
-  );
-
+  const choices = shuffle([...item.incorrect_answers, item.correct_answer]);
+  
   const answerElements = choices.map((choice) => {
     const isCorrectAnswer = item.correct_answer === choice;
     return (
@@ -27,7 +25,11 @@ export default function Question(props) {
         <label
           htmlFor={`${choice}${id}`}
           className={
-            isDone && (isCorrectAnswer ? "correct-answer" : "incorrect-answer")
+            isDone
+              ? isCorrectAnswer
+                ? "correct-answer"
+                : "incorrect-answer"
+              : ""
           }
         >
           {decode(choice)}
