@@ -7,11 +7,24 @@ function App() {
   const [quiz, setQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [isDone, setIsDone] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [correctAnswers, setCorrectAnswers] = useState({});
+  const [isCorrect, setIsCorrect] = useState({});
+
   const [score, setScore] = useState(0);
 
   useEffect(() => {
     getQuestions();
   }, []);
+
+  useEffect(() => {
+    questions.forEach((item, index) =>
+      setCorrectAnswers((prevCorrectAnswers) => ({
+        ...prevCorrectAnswers,
+        [`choice${index}`]: item.correct_answer,
+      }))
+    );
+  }, [questions]);
 
   function getQuestions() {
     fetch("https://opentdb.com/api.php?amount=5")
@@ -31,7 +44,16 @@ function App() {
       {!quiz ? (
         <Start setQuiz={setQuiz} isDone={isDone} />
       ) : (
-        <Quiz questions={questions} />
+        <Quiz
+          questions={questions}
+          isDone={isDone}
+          formData={formData}
+          setFormData={setFormData}
+          correctAnswers={correctAnswers}
+          setCorrectAnswers={setCorrectAnswers}
+          isCorrect={isCorrect}
+          setIsCorrect={setIsCorrect}
+        />
       )}
       {quiz &&
         (!isDone ? (
