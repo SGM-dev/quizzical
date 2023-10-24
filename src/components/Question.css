@@ -1,0 +1,34 @@
+.question-container {
+  padding: 15px;
+  border-bottom: solid 0.8px #dbdef0;
+}
+
+.question {
+  color: #293264;
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.answers {
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  gap: 15px;
+}
+
+label {
+  color: #293264;
+  text-align: center;
+  font-family: "Inter";
+  font-size: 10.24px;
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 7.942px;
+  border: 0.794px solid #4d5b9e;
+  cursor: pointer;
+}
+
+input:checked ~ label {
+    background: #d6dbf5;
+}
