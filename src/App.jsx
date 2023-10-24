@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5")
       .then((res) => res.json())
-      .then((data) => setQuestions(data));
+      .then((data) => setQuestions(data.results));
   }, []);
 
   return (
