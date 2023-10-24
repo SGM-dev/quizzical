@@ -3,18 +3,18 @@ import Question from "./Question";
 import { useEffect, useState } from "react";
 
 export default function Quiz(props) {
+  const { questions, isDone } = props;
   const [formData, setFormData] = useState({});
   const [correctAnswers, setCorrectAnswers] = useState({});
 
-
   useEffect(() => {
-    props.questions.forEach((item, index) =>
+    questions.forEach((item, index) =>
       setCorrectAnswers((prevCorrectAnswers) => ({
         ...prevCorrectAnswers,
         [`choice${index}`]: item.correct_answer,
       }))
     );
-  }, [props.questions]);
+  }, [questions]);
 
   function handleChange(e) {
     e.stopPropagation();
@@ -22,7 +22,7 @@ export default function Quiz(props) {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   }
 
-  const questionElements = props.questions.map((item, index) => {
+  const questionElements = questions.map((item, index) => {
     return (
       <Question
         item={item}

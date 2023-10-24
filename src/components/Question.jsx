@@ -4,8 +4,10 @@ import { shuffle } from "./utils";
 import "./Question.css";
 
 export default function Question(props) {
+  const { item, id, name, handleChange, correctAnswer } = props;
+
   const [choices, setChoices] = useState(
-    shuffle([...props.item.incorrect_answers, props.item.correct_answer])
+    shuffle([...item.incorrect_answers, item.correct_answer])
   );
 
   const answerElements = choices.map((choice) => {
@@ -14,19 +16,19 @@ export default function Question(props) {
         <input
           type="radio"
           value={choice}
-          id={`${choice}${props.id}`}
-          name={props.name}
+          id={`${choice}${id}`}
+          name={name}
           hidden
-          onChange={props.handleChange}
+          onChange={handleChange}
         ></input>
-        <label htmlFor={`${choice}${props.id}`}>{decode(choice)}</label>
+        <label htmlFor={`${choice}${id}`}>{decode(choice)}</label>
       </div>
     );
   });
 
   return (
     <div className="question-container">
-      <h3 className="question">{decode(props.item.question)}</h3>
+      <h3 className="question">{decode(item.question)}</h3>
       <div className="answers">{answerElements}</div>
     </div>
   );
