@@ -32,12 +32,26 @@ function App() {
       .then((data) => setQuestions(data.results));
   }
 
+  function resetGame() {
+    setQuiz(true);
+    getQuestions();
+    setIsDone(false);
+    setScore(0);
+    setFormData({});
+    setCorrectAnswers({});
+    setIsCorrect({});
+  }
+
   const checkBtn = (
     <button className="check-answers btn" onClick={() => setIsDone(true)}>
       Check Answers
     </button>
   );
-  const playBtn = <button className="play-again btn">Play Again</button>;
+  const playBtn = (
+    <button className="play-again btn" onClick={() => resetGame()}>
+      Play Again
+    </button>
+  );
 
   return (
     <main>
