@@ -30,5 +30,19 @@ label {
 }
 
 input:checked ~ label {
-    background: #d6dbf5;
+  background: #d6dbf5;
+}
+
+input:disabled ~ label {
+  opacity: 0.5;
+}
+
+.correct-answer,
+input:checked ~ .correct-answer {
+  background: #94d7a2;
+  opacity: 0.7;
+}
+
+input:checked ~ .incorrect-answer {
+  background: #f8bcbc;
 }

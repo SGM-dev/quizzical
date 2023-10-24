@@ -12,8 +12,9 @@ export default function Question(props) {
   );
 
   const answerElements = choices.map((choice) => {
+    const isCorrectAnswer = item.correct_answer === choice;
     return (
-      <div key={choice} className="not-answered">
+      <div key={choice}>
         <input
           type="radio"
           value={choice}
@@ -23,7 +24,14 @@ export default function Question(props) {
           onChange={handleChange}
           disabled={isDone}
         ></input>
-        <label htmlFor={`${choice}${id}`}>{decode(choice)}</label>
+        <label
+          htmlFor={`${choice}${id}`}
+          className={
+            isDone && (isCorrectAnswer ? "correct-answer" : "incorrect-answer")
+          }
+        >
+          {decode(choice)}
+        </label>
       </div>
     );
   });
