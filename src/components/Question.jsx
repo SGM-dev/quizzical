@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { decode } from "html-entities";
 import { shuffle } from "./utils";
 import "./Question.css";
 
 export default function Question(props) {
-  const { item, id, name, handleChange, correctAnswer } = props;
+  const { item, id, name, handleChange, correctAnswer, isDone } = props;
 
   const [choices, setChoices] = useState(
     shuffle([...item.incorrect_answers, item.correct_answer])
