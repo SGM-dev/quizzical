@@ -1,6 +1,9 @@
 .question-container {
   padding: 15px;
   border-bottom: solid 0.8px #dbdef0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .question {
@@ -13,8 +16,9 @@
 .answers {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   margin: 1em;
-  gap: 15px;
+  gap: 20px;
 }
 
 label {
